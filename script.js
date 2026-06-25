@@ -1,5 +1,5 @@
 const API_URL =
-"https://script.google.com/macros/s/AKfycbwqumGdFeA38PV2uRTRPbmtWwfGB8u9B43QdAYrZlX_oxVYAYxTvSzRvxIWRl2QOcTQ1Q/exec";
+"https://script.google.com/macros/s/YOUR_ID/exec";
 
 async function checkResult(){
 
