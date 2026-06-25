@@ -1,25 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <title>School Result Portal</title>
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="container">
-    <h1>School Result Portal</h1>
+<div class="card">
 
-    <input type="text" id="admissionNo"
-           placeholder="Enter Admission Number">
+<img src="logo.png" class="logo">
 
-    <button onclick="checkResult()">
-        Check Result
-    </button>
+<h1>School Result Portal</h1>
 
-    <div id="result"></div>
+<input
+type="text"
+id="adm"
+placeholder="Admission Number">
+
+<input
+type="date"
+id="dob">
+
+<button onclick="checkResult()">
+Check Result
+</button>
+
+<div id="result"></div>
+
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
