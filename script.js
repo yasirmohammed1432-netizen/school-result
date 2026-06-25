@@ -1,76 +1,110 @@
 const API_URL =
 "https://script.google.com/macros/s/AKfycbwqumGdFeA38PV2uRTRPbmtWwfGB8u9B43QdAYrZlX_oxVYAYxTvSzRvxIWRl2QOcTQ1Q/exec";
 
-async function checkResult() {
+async function checkResult(){
 
-    const admissionNo =
-    document.getElementById("admissionNo").value;
+const adm =
+document.getElementById("adm").value.trim();
 
-    const resultDiv =
-    document.getElementById("result");
+const dob =
+document.getElementById("dob").value;
 
-    resultDiv.innerHTML = "Loading...";
+const resultDiv =
+document.getElementById("result");
 
-    try {
+resultDiv.innerHTML="Loading...";
 
-        const response =
-        await fetch(API_URL);
+try{
 
-        const data =
-        await response.json();
+const res =
+await fetch(API_URL);
 
-        const student =
-        data.find(
-            s => s.admissionNo.toString() === admissionNo
-        );
+const data =
+await res.json();
 
-        if(!student){
-            resultDiv.innerHTML =
-            "<h3>Result Not Found</h3>";
-            return;
-        }
+const student =
+data.find(item =>
 
-        resultDiv.innerHTML = `
-        <h2>${student.studentName}</h2>
+item.admissionNo === adm &&
+item.dob === dob
 
-        <table>
-            <tr>
-                <th>Class</th>
-                <td>${student.class}</td>
-            </tr>
+);
 
-            <tr>
-                <th>English</th>
-                <td>${student.english}</td>
-            </tr>
+if(!student){
 
-            <tr>
-                <th>Maths</th>
-                <td>${student.maths}</td>
-            </tr>
+resultDiv.innerHTML=
+"<h3>Result Not Found</h3>";
 
-            <tr>
-                <th>Science</th>
-                <td>${student.science}</td>
-            </tr>
+return;
+}
 
-            <tr>
-                <th>Total</th>
-                <td>${student.total}</td>
-            </tr>
+resultDiv.innerHTML=`
 
-            <tr>
-                <th>Grade</th>
-                <td>${student.grade}</td>
-            </tr>
-        </table>
-        `;
+<img
+src="${student.photo}"
+class="student-photo">
 
-    } catch(error){
+<h2>${student.studentName}</h2>
 
-        resultDiv.innerHTML =
-        "<h3>Error Loading Result</h3>";
+<table>
 
-        console.error(error);
-    }
+<tr>
+<th>Admission No</th>
+<td>${student.admissionNo}</td>
+</tr>
+
+<tr>
+<th>Class</th>
+<td>${student.className}</td>
+</tr>
+
+<tr>
+<th>English</th>
+<td>${student.english}</td>
+</tr>
+
+<tr>
+<th>Maths</th>
+<td>${student.maths}</td>
+</tr>
+
+<tr>
+<th>Science</th>
+<td>${student.science}</td>
+</tr>
+
+<tr>
+<th>Social</th>
+<td>${student.social}</td>
+</tr>
+
+<tr>
+<th>Total</th>
+<td>${student.total}</td>
+</tr>
+
+<tr>
+<th>Grade</th>
+<td>${student.grade}</td>
+</tr>
+
+</table>
+
+<button
+class="printBtn"
+onclick="window.print()">
+Print Result
+</button>
+
+`;
+
+}catch(error){
+
+resultDiv.innerHTML=
+"Error Loading Result";
+
+console.error(error);
+
+}
+
 }
